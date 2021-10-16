@@ -40,7 +40,6 @@ export class CaixaEletronicoComponent implements OnInit {
     if (this.formValueSaDe.value.agencia != '' && this.formValueSaDe.value.numeroConta != '') {
       this.contaService.validarConta(this.formValueSaDe.value.agencia, this.formValueSaDe.value.numeroConta).subscribe(result => {
         this.validarConta = false;
-        //this.formValueSaDe.setValue
       }, err => {
         this.validarConta = true;
       })
