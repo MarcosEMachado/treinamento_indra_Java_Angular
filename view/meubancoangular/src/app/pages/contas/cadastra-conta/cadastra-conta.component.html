@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row">
+    <div class="cal">
+      <h1 class="display-6">
+        Nova Conta para o {{ cliente.nome }}
+        <i class="fa-solid fa-comments-dollar"></i>
+      </h1>
+      <hr />
+      <div class="form-novaconta">
+        <form [formGroup]="formValue" (ngSubmit)="salvarConta()">
+          <div class="mb-3">
+            <label class="form-label">Agência</label>
+            <input
+              formValuetype="text"
+              class="form-control"
+              formControlName="agencia"
+              maxlength="4"
+            />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Número da Conta</label>
+            <input
+              formValuetype="text"
+              class="form-control"
+              formControlName="numero"
+              maxlength="6"
+            />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Saldo</label>
+            <input
+              formValuetype="text"
+              class="form-control"
+              formControlName="saldo"
+            />
+          </div>
+          <button
+            type="submit"
+            class="btn btn-success"
+            [disabled]="!formValue.valid"
+          >
+            Salvar
+          </button>
+          <a [routerLink]="['/contas', cliente.cpf]" class="btn btn-dark mx-1"
+            >Voltar</a
+          >
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+.div-radio {
+  padding-bottom: 10px;
+}
+
+form {
+  padding-top: 20px;
+}
+
+.contas {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.contas-origem {
+  padding-right: 20px;
+  width: 50%;
+}
+
+.contas-destino {
+  width: 50%;
+}

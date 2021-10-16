@@ -1,0 +1,221 @@
+<div class="container">
+  <div class="row">
+    <h1 class="display-6">
+      <i class="fas fa-comment-dollar text-danger"></i> Caixa Eletrônico
+    </h1>
+    <hr />
+    <div class="col">
+      <div class="div-radio">
+        <nav>
+          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button
+              class="nav-link active"
+              id="depositar-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#depositar"
+              type="button"
+              role="tab"
+              aria-controls="depositar"
+              aria-selected="true"
+            >
+              Depositar
+            </button>
+            <button
+              class="nav-link"
+              id="sacar-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#sacar"
+              type="button"
+              role="tab"
+              aria-controls="sacar"
+              aria-selected="false"
+            >
+              Sacar
+            </button>
+            <button
+              class="nav-link"
+              id="transferir-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#transferir"
+              type="button"
+              role="tab"
+              aria-controls="transferir"
+              aria-selected="false"
+            >
+              Transferir
+            </button>
+          </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+          <div
+            class="tab-pane fade show active"
+            id="depositar"
+            role="tabpanel"
+            aria-labelledby="depositar-tab"
+          >
+            <div class="deposita">
+              <form [formGroup]="formValueSaDe" (ngSubmit)="depositar()">
+                <div class="mb-3">
+                  <label class="form-label">Agência</label>
+                  <input
+                    formValuetype="text"
+                    class="form-control"
+                    maxlength="4"
+                    formControlName="agencia"
+                    autofocus
+                  />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Número da Conta</label>
+                  <input
+                    formValuetype="text"
+                    class="form-control"
+                    maxlength="6"
+                    formControlName="numeroConta"
+                    (blur)="fValidarConta()"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Valor</label>
+                  <input
+                    formValuetype="text"
+                    class="form-control"
+                    formControlName="valor"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  class="btn btn-success"
+                  [disabled]="validarConta"
+                >
+                  Depositar
+                </button>
+                <a routerLink="/contas" class="btn btn-dark mx-1">Voltar</a>
+              </form>
+            </div>
+          </div>
+          <div
+            class="tab-pane fade"
+            id="sacar"
+            role="tabpanel"
+            aria-labelledby="sacar-tab"
+          >
+            <div class="sacar">
+              <form [formGroup]="formValueSaDe" (ngSubmit)="sacar()">
+                <div class="mb-3">
+                  <label class="form-label">Agência</label>
+                  <input
+                    formValuetype="text"
+                    class="form-control"
+                    maxlength="4"
+                    formControlName="agencia"
+                    autofocus
+                  />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Número da Conta</label>
+                  <input
+                    formValuetype="text"
+                    class="form-control"
+                    maxlength="6"
+                    formControlName="numeroConta"
+                    (blur)="fValidarConta()"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Valor</label>
+                  <input
+                    formValuetype="text"
+                    class="form-control"
+                    formControlName="valor"
+                    [disabled]="validarConta"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  class="btn btn-danger"
+                  [disabled]="validarConta"
+                >
+                  Sacar
+                </button>
+                <a routerLink="/contas" class="btn btn-dark mx-1">Voltar</a>
+              </form>
+            </div>
+          </div>
+          <div
+            class="tab-pane fade"
+            id="transferir"
+            role="tabpanel"
+            aria-labelledby="transferir-tab"
+          >
+            <div class="transferir">
+              <form
+                [formGroup]="formValueTransferencia"
+                (ngSubmit)="transferir()"
+              >
+                <div class="contas">
+                  <div class="contas-origem">
+                    <div class="mb-3">
+                      <label class="form-label">Agência Origem</label>
+                      <input
+                        formValuetype="text"
+                        class="form-control"
+                        maxlength="4"
+                        formControlName="agenciaOrigem"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Número da Conta Origem</label>
+                      <input
+                        formValuetype="text"
+                        class="form-control"
+                        maxlength="6"
+                        formControlName="numeroContaOrigem"
+                      />
+                    </div>
+                  </div>
+                  <div class="contas-destino">
+                    <div class="mb-3">
+                      <label class="form-label">Agência Destino</label>
+                      <input
+                        formValuetype="text"
+                        class="form-control"
+                        maxlength="4"
+                        formControlName="agenciaDestino"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Número da Conta Destino</label>
+                      <input
+                        formValuetype="text"
+                        class="form-control"
+                        maxlength="6"
+                        formControlName="numeroContaDestino"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Valor</label>
+                  <input
+                    formValuetype="text"
+                    class="form-control"
+                    formControlName="valor"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  class="btn btn-success"
+                  [disabled]="!formValueTransferencia.valid"
+                >
+                  Transferir
+                </button>
+                <a routerLink="/contas" class="btn btn-dark mx-1">Voltar</a>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

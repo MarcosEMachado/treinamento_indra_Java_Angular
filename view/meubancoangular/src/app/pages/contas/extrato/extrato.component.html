@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="row">
+    <div class="cal">
+      <h1 class="display-6">
+        Extrato <i class="fa-solid fa-clipboard-list"></i>
+        <div class="opcoes">
+          Seu saldo
+          {{ saldo | currency }}
+          <div class="butoes">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              (click)="maisDias()"
+            >
+              Mais 7 dias
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              (click)="extratosFull()"
+            >
+              Todo o extrato
+            </button>
+          </div>
+        </div>
+      </h1>
+      <hr />
+      <div
+        class="card border-success mb-3"
+        style="max-width: 100%"
+        *ngFor="let extrato of extratos"
+      >
+        <div
+          class="card-header bg-transparent border-success {{
+            extrato.tpOperacao == 'C' ? 'text-primary' : 'text-danger'
+          }}"
+        >
+          {{ extrato.tpOperacao == "C" ? "Crédito" : "Débito" }}
+        </div>
+        <div class="card-body">
+          <h5
+            class="card-title {{
+              extrato.tpOperacao == 'C' ? 'text-primary' : 'text-danger'
+            }}"
+          >
+            {{ extrato.valor | currency }}
+          </h5>
+          <p
+            class="card-text {{
+              extrato.tpOperacao == 'C' ? 'text-primary' : 'text-danger'
+            }}"
+          >
+            {{ extrato.observacao }}
+          </p>
+        </div>
+        <div
+          class="card-footer bg-transparent border-success {{
+            extrato.tpOperacao == 'C' ? 'text-primary' : 'text-danger'
+          }}"
+        >
+          {{ extrato.dataHora | date: "dd/MM/yyyy HH:mm" }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
